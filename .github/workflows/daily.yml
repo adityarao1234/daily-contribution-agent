@@ -29,7 +29,7 @@ jobs:
       - name: Commit and Push
         run: |
           git config --global user.name "adityarao1234"
-          git config --global user.email "YOUR_GITHUB_EMAIL"
+          git config --global user.email "adityarao1925@gmail.com"
 
           git add .
 
