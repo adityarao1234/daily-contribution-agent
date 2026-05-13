@@ -1,0 +1,35 @@
+name: Daily Contribution Agent
+
+on:
+  schedule:
+    - cron: '30 18 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Script
+        run: python scripts/update.py
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "adityarao1234"
+          git config --global user.email "adityarao1925@gmail.com"
+
+          git add .
+          git commit -m "Daily AI contribution update" || echo "No changes"
+
+          git push
